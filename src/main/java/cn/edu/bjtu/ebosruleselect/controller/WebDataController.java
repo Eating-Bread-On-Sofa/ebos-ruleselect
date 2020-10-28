@@ -41,7 +41,6 @@ public class WebDataController {
         this.otherThreshold = new int [10][otherRulesLen];
         this.otherLogic = new String[10][otherRulesLen];
         this.otherParameterName = new String[10][otherRulesLen];
-
         for (int i = 0; i<10; i++)
             if (this.parameterName[i] == null)
             {
