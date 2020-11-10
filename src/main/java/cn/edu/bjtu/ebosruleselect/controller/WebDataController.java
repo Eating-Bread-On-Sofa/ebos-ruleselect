@@ -1,7 +1,9 @@
 package cn.edu.bjtu.ebosruleselect.controller;
 
+import cn.edu.bjtu.ebosruleselect.service.LogService;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api")
