@@ -29,8 +29,8 @@ public class RuleSelectController {
         System.out.println(info);
         String ip = info.getString("gateway");
         System.out.println(ip);
-        postController.sendPostRequest("http://" + ip +"/api/ruleReceive", info);
-        postController.sendPostRequest("http://" + ip +"/api/ruleCreate", info);
+        postController.sendPostRequest("http://" + ip +":8083/api/ruleReceive", info);
+        postController.sendPostRequest("http://" + ip +":8083/api/ruleCreate", info);
         logService.info("create","用户添加规则");
         return "成功收到前端添加规则";
     }
