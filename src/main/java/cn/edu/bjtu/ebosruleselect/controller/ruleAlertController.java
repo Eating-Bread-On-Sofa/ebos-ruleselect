@@ -19,7 +19,7 @@ public class ruleAlertController {
     public static ArrayList<String> al = new ArrayList<String>();
 
     @CrossOrigin
-    @GetMapping("/ruleAlert")
+    @GetMapping("/ruleAlert1")
     public JSONObject getRuleAlert(){
         JSONObject j=new JSONObject();
 //        ArrayList<String> al = new ArrayList<String>();
