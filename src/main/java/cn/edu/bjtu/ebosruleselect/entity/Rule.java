@@ -26,6 +26,7 @@ public class Rule  {
     private String service;
     private String device;
     private String scenario;
+    private String gateway;
 
 
     public JSONArray getOtherRules() {
@@ -34,6 +35,9 @@ public class Rule  {
 
     public String getService() {
         return service;
+    }
+    public String getGateway() {
+        return gateway;
     }
     public String getDevice() { return device; }
 
