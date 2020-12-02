@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 @Document
-public class Rule  {
+public class RuleSelect  {
     @Id
     private String ruleId;
     private Date ruleCreateTime;

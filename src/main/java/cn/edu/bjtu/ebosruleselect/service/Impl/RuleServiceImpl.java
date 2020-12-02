@@ -2,7 +2,7 @@ package cn.edu.bjtu.ebosruleselect.service.Impl;
 
 
 import cn.edu.bjtu.ebosruleselect.dao.RuleRepository;
-import cn.edu.bjtu.ebosruleselect.entity.Rule;
+import cn.edu.bjtu.ebosruleselect.entity.RuleSelect;
 import cn.edu.bjtu.ebosruleselect.service.RuleService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +18,22 @@ public class RuleServiceImpl implements RuleService {
     RuleRepository ruleRepository;
 
     @Override
-    public Page<Rule> findAllRule(Pageable pageable) {
-        Page<Rule> rules = ruleRepository.findAll(pageable);
+    public Page<RuleSelect> findAllRule(Pageable pageable) {
+        Page<RuleSelect> rules = ruleRepository.findAll(pageable);
         return rules;
     }
 
     @Override
-    public List<Rule> findAllRule() {
+    public List<RuleSelect> findAllRule() {
         return ruleRepository.findAll();
     }
 
 
     @Override
-    public boolean addRule(Rule rule) {
-        Rule findRule = ruleRepository.findRuleByRuleName(rule.getRuleName());
+    public boolean addRule(RuleSelect rule) {
+        RuleSelect findRule = ruleRepository.findRuleByRuleName(rule.getRuleName());
         if (findRule == null) {
-            Rule rule1 = ruleRepository.save(rule);
+            RuleSelect rule1 = ruleRepository.save(rule);
             ObjectId objectId = new ObjectId(rule1.getRuleId());
             rule1.setRuleCreateTime(objectId.getDate());
             ruleRepository.save(rule1);
@@ -46,7 +46,7 @@ public class RuleServiceImpl implements RuleService {
 
     @Override
     public String deleteRule(String ruleId) {
-        Rule rule = ruleRepository.findRuleByRuleId(ruleId);
+        RuleSelect rule = ruleRepository.findRuleByRuleId(ruleId);
         if (rule == null) {
             return "不存在该规则";
         } else {
@@ -56,12 +56,12 @@ public class RuleServiceImpl implements RuleService {
     }
 
     @Override
-    public Rule findRuleByRuleId(String ruleId) {
+    public RuleSelect findRuleByRuleId(String ruleId) {
         return ruleRepository.findRuleByRuleId(ruleId);
     }
 
     @Override
-    public void changeRuleStatus(Rule rule, int status){
+    public void changeRuleStatus(RuleSelect rule, int status){
         System.out.println("RuleService CurrentStatus:"+status);
         rule.setRuleStatus(status);
         ruleRepository.save(rule);
