@@ -1,6 +1,7 @@
 package cn.edu.bjtu.ebosruleselect.controller;
 
 import cn.edu.bjtu.ebosruleselect.dao.RuleRepository;
+import cn.edu.bjtu.ebosruleselect.entity.RuleSelect;
 import cn.edu.bjtu.ebosruleselect.service.*;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -33,6 +34,26 @@ public class RuleSelectController {
         postController.sendPostRequest("http://" + ip +":8083/api/ruleCreate", info);
         logService.info("create","用户添加规则");
         return "成功收到前端添加规则";
+    }
+
+    @CrossOrigin
+    @PostMapping("/ruleSave")
+    public Boolean addRule(@RequestBody RuleSelect rule) {
+        System.out.println(rule);
+        if (rule != null) {
+            for (int i = 0; i < ruleService.findAllRule().size(); i++) {
+                if (rule.getRuleName() == ruleService.findAllRule().get(i).getRuleName()) {
+                    logService.error("create","规则名称重复");
+                    return false;
+                }
+            }
+            if (ruleService.addRule(rule)) {
+                logService.info("create","保存新规则"+rule.getRulePara()+rule.getRuleJudge()+rule.getRuleParaThreshold());
+                return true;
+            }
+        }
+        logService.error("create","保存新规则失败");
+        return false;
     }
 
     @CrossOrigin
