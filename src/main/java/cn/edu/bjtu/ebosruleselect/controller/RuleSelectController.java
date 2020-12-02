@@ -85,7 +85,7 @@ public class RuleSelectController {
             ja.add(j);
         }
 //        this.ja=ja;
-//        this.loadRule();
+        this.loadRule();
 //        logService.info("retrieve","用户接收规则列表");
         return ja;
     }
@@ -108,5 +108,13 @@ public class RuleSelectController {
     public String ping(){
 //        logService.info("retrieve","对网关管理进行了一次健康检测");
         return "pong";
+    }
+
+    public void loadRule(){
+        for (int i = 0; i < ruleService.findAllRule().size(); i++){
+            String ip = ruleService.findAllRule().get(i).getGateway();
+            JSONObject j = new JSONObject();
+            postController.sendPostRequest("http://" + ip +":8083/api/ruleLoad",j);
+        }
     }
 }
