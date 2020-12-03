@@ -39,6 +39,10 @@ public class RuleSelect  {
     public String getGateway() {
         return gateway;
     }
+    public void setGateway(String gateway) {
+        this.gateway = gateway;
+    }
+
     public String getDevice() { return device; }
 
     public String getScenario() { return scenario; }
