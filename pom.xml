@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>cn.edu.bjtu</groupId>
-    <artifactId>ebosruleselect</artifactId>
+    <artifactId>ebos-ruleselect</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ebosruleselect</name>
+    <name>ebos-ruleselect</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
