@@ -114,7 +114,12 @@ public class RuleSelectController {
         for (int i = 0; i < ruleService.findAllRule().size(); i++){
             String ip = ruleService.findAllRule().get(i).getGateway();
             JSONObject j = new JSONObject();
-            postController.sendPostRequest("http://" + ip +":8083/api/ruleLoad",j);
+            try {
+                postController.sendPostRequest("http://" + ip +":8083/api/ruleLoad",j);
+            } catch (Exception e){
+                System.out.println("---------------------异常："+e);
+            }
+
         }
     }
 }
