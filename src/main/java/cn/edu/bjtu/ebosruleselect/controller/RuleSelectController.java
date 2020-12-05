@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,8 @@ public class RuleSelectController {
     RuleRepository ruleRepository;
     @Autowired
     LogService logService;
+    @Autowired
+    RestTemplate restTemplate;
 
     public static JSONObject alertJson=new JSONObject();
     public static ArrayList al = new ArrayList();
@@ -32,6 +35,9 @@ public class RuleSelectController {
         System.out.println(ip);
         postController.sendPostRequest("http://" + ip +":8083/api/ruleReceive", info);
         postController.sendPostRequest("http://" + ip +":8083/api/ruleCreate", info);
+        postController.sendPostRequest("http://" + ip +":8083/api/rule", info);
+        postController.sendPostRequest("http://" + ip +":8083/api/ruleDelete", info);
+        restTemplate.getForObject("http://" + ip +":8083/api/ruleAlert",JSONObject.class);
         logService.info("create","用户添加规则");
         return "成功收到前端添加规则";
     }
@@ -54,6 +60,29 @@ public class RuleSelectController {
         }
         logService.error("create","保存新规则失败");
         return false;
+    }
+
+    @CrossOrigin
+    @PostMapping("/ruleDelete")
+    //清空内存中的数据
+    public void ruleDelete(@RequestBody JSONObject info)
+    {
+        String ruleName = info.getString("ruleName");
+        for (int i = 0; i<10; i++) {
+            if((WebDataController.ruleName[i])!=null) {
+                if ((WebDataController.ruleName[i]).equals(ruleName)) {
+                    WebDataController.parameterName[i] = null;
+                    WebDataController.threshold[i] = 0;
+                    WebDataController.symbol[i] = null;
+                    WebDataController.operation[i] = null;
+                    WebDataController.service[i] = null;
+                    break;
+                }
+            }
+            else
+                continue;
+        }
+        logService.info("delete","成功删除规则:"+ruleName);
     }
 
     @CrossOrigin
