@@ -13,12 +13,12 @@ public class EbosruleselectApplication {
         SpringApplication.run(EbosruleselectApplication.class, args);
     }
 
-    @Bean
-    public RestTemplate restTemplate() {
-        SimpleClientHttpRequestFactory simpleClientHttpRequestFactory = new SimpleClientHttpRequestFactory();
-        simpleClientHttpRequestFactory.setConnectTimeout(10000);
-        simpleClientHttpRequestFactory.setReadTimeout(10000);
-        RestTemplate restTemplate = new RestTemplate(simpleClientHttpRequestFactory);
-        return restTemplate;
-    }
+//    @Bean
+//    public RestTemplate restTemplate() {
+//        SimpleClientHttpRequestFactory simpleClientHttpRequestFactory = new SimpleClientHttpRequestFactory();
+//        simpleClientHttpRequestFactory.setConnectTimeout(10000);
+//        simpleClientHttpRequestFactory.setReadTimeout(10000);
+//        RestTemplate restTemplate = new RestTemplate(simpleClientHttpRequestFactory);
+//        return restTemplate;
+//    }
 }

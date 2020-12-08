@@ -2,6 +2,7 @@ package cn.edu.bjtu.ebosruleselect.service.Impl;
 
 import cn.edu.bjtu.ebosruleselect.service.MqConsumer;
 import cn.edu.bjtu.ebosruleselect.service.MqFactory;
+import cn.edu.bjtu.ebosruleselect.service.MqGetIp;
 import cn.edu.bjtu.ebosruleselect.service.MqProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,5 +41,10 @@ public class MqFactoryImpl implements MqFactory {
             default:
                 return new ActiveMqConsumerImpl(topic);
         }
+    }
+
+    @Override
+    public MqGetIp createGetIp(String ip, String topic) {
+        return new ActiveMqGetIpImpl(ip,topic);
     }
 }
