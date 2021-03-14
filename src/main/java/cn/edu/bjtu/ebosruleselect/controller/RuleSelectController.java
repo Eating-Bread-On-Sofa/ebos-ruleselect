@@ -14,6 +14,11 @@ import org.springframework.web.client.RestTemplate;
 import java.net.InetAddress;
 
 import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Value;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RequestMapping("/api")
 @RestController
@@ -24,6 +29,8 @@ public class RuleSelectController {
     RuleRepository ruleRepository;
     @Autowired
     LogService logService;
+    @Value("${docker}")
+    private static String ip ;
 
     public static JSONObject alertJson=new JSONObject();
     public static ArrayList al = new ArrayList();
@@ -145,4 +152,33 @@ public class RuleSelectController {
             }
         }
     }
+
+    //获取服务器ip
+//    @ApiOperation(value = "获取服务器ip")
+//    @CrossOrigin
+//    @GetMapping("/accessip")
+//    public static String getClientIp() {
+//        HttpServletRequest request = getHttpServletRequest();
+//        String accessIP = request.getHeader("X-Forwarded-For");
+//        if (accessIP == null || accessIP.length() == 0 || "unknown".equalsIgnoreCase(accessIP)) {
+//            accessIP = request.getHeader("Proxy-Client-IP");
+//        }
+//        if (accessIP == null || accessIP.length() == 0 || "unknown".equalsIgnoreCase(accessIP)) {
+//            accessIP = request.getHeader("WL-Proxy-Client-IP");
+//        }
+//        if (accessIP == null || accessIP.length() == 0 || "unknown".equalsIgnoreCase(accessIP)) {
+//            accessIP = request.getRemoteAddr();
+//        }
+//        if (accessIP == null || accessIP.length() == 0 || "127.0.0.1".equalsIgnoreCase(accessIP)) {
+//            try {
+//                accessIP = InetAddress.getLocalHost().getHostAddress();
+//            } catch (Exception e) {
+//                accessIP = "";
+//            }
+//
+//        }
+//        return accessIP;
+//    }
+
+
 }

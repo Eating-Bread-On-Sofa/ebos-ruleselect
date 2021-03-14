@@ -23,4 +23,5 @@ spring:
 server:
   edgex: localhost
   port: 8099
+docker: localhost
 mq: activemq
