@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.client.RestTemplate;
+
 import java.net.InetAddress;
 
 import java.util.ArrayList;
@@ -108,6 +109,31 @@ public class RuleSelectController {
             }
         }
     }
+
+//    @CrossOrigin
+//    @GetMapping("accessip")
+//    public static String getInter4Address() {
+//        Enumeration<NetworkInterface> nis;
+//        String ip = null;
+//        try {
+//            nis = NetworkInterface.getNetworkInterfaces();
+//            for ( ; nis.hasMoreElements();) {
+//                NetworkInterface ni = nis.nextElement();
+//                Enumeration<InetAddress> ias = ni.getInetAddresses();
+//                for ( ; ias.hasMoreElements(); ) {
+//                    InetAddress ia = ias.nextElement();
+//                    // ia instance of inet6address && !ia.equals("")
+//                    if (ia instanceof Inet4Address && !ia.getHostAddress().equals("127.0.0.1")) {
+//                        ip = ia.getHostAddress();
+//                    }
+//                }
+//            }
+//        } catch (SocketException e) {
+//            //todo auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        return ip;
+//    }
 
 //
 //    @CrossOrigin
